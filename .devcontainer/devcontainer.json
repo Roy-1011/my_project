@@ -1,0 +1,13 @@
+{
+    "name": "My Dev Container",
+    "image": "mcr.microsoft.com/vscode/devcontainers/python:3.9",
+    "workspaceFolder": "/workspace",
+    "extensions": [
+      "ms-python.python",
+      "ms-vscode.cpptools"
+    ],
+    "settings": {
+      "python.pythonPath": "/usr/local/bin/python"
+    },
+    "postCreateCommand": "pip install -r requirements.txt"
+  }
