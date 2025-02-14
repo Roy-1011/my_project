@@ -1,16 +1,17 @@
-version: '3.8'
-services:
-  app:
-    build: .
-    ports:
-      - "8001:8001"
-    volumes:
-      - .:/app
-    depends_on:
-      - db
-    networks:
+version: '3.8' # 指定Docker Compose的版本
+services: # 定義服務(每個服務對應一個容器)
+  app: # 由自己取的服務名稱(ex.現在的容器名字是叫my_progect-app-1)
+    # 以下的指令都是選用，看需求來增加
+    build: . # 指定Dockerfile所在文件夾的路徑(.代表從當前目錄尋找Dockerfile)，基於這個指令由dockerfile來自行構建一個新的鏡像
+    ports: # 暴露端口信息(格式有兩種:"宿主端口:容器端口" or "僅指定容器端口")
+      - "8001:8001" # 換行加-是固定格式，要同一行的話則是放[]
+    volumes: # 將宿主機的文件或資料夾映射到容器內部，讓容器內部的應用程式讀取或寫入本機的文件
+      - .:/app # 將當前目錄(.)掛載到容器內的/app目錄(這個目錄是在docker建立時自動創建的)
+    depends_on: # 告訴Docker Compose服務在啟動時的依賴關係
+      - db # 這個app啟動前會先等待db服務啟動，避免無法連線在db資料庫的情況
+    networks: # 配置容器連接的網路
       - app_network
-  db:
+  db: # 和app一樣是服務名稱，用來處理關聯式資料庫的
     image: postgres:13
     environment:
       POSTGRES_USER: user
@@ -19,6 +20,9 @@ services:
     networks:
       - app_network
 
-networks:
-  app_network:
-    driver: bridge
+networks: # 定義和管理自定義網路
+  app_network: # 定義了一個名為app_network的網路(名字也是由自己取的)
+    driver: bridge # 使用bridge(Docker默認的網路驅動程式，用來創建一個虛擬的網路，讓不同容器之間可以通訊)
+
+# 檔案目的 : 用來定義和管理多個容器服務的配置文件
+# 參考網址 : https://yeasy.gitbook.io/docker_practice/compose/compose_file

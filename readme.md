@@ -65,11 +65,12 @@
 
 ## 目錄結構
 my_project/
-- **devcontainer.json**  # 配置 VSCode Dev Containers 開發環境的設置
+- **devcontainer.json**  # 用來配置 VSCode 中的開發環境，讓開發者容器中進行開發
+- **explaindevcontainer.txt** # 因為json文件不支持加註解，因此創了這個文字檔用來幫devcontainer.json加註解
 - **docker-compose.yml** # 管理容器的設定
 - **Dockerfile** # 建立 Docker 映像
 - **main.py** # FastAPI 的入口點
 - **readme.md** # 專案說明文件
 - **requirements.txt** # Python 依賴套件
 
-時間紀錄 : 2025/2/13 20:45
+時間紀錄 : 2025/2/15 01:18 # 更新所有檔案的註解，方便理解程式碼為甚麼要這樣寫

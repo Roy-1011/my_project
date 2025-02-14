@@ -1,0 +1,26 @@
+{ 
+    "name": "My Dev Container", # 用來設定容器的名稱
+
+    "image": "mcr.microsoft.com/vscode/devcontainers/python:3.9", # 設定容器是基於哪個Docker映像
+    # mcr.microsoft.com是映像的託管位置，指的是Microsoft的容器託管倉庫
+    # vscode指的是這個映像是專為VSCode容器開發設計的
+    # devcontainers是指這些映像是為Dev Containers項目設計的，這是一個專為VS Code開發環境設置的容器映像集
+    # python指的是映像基於Python環境，這表示該映像將提供Python開發所需的基礎設置
+    # 3.9是版本號，表示使用Python 3.9作為基礎環境。
+    # 總結：這個名稱表明映像來自Microsoft的容器倉庫，並且專門用於VS Code開發環境，基於Python 3.9
+
+    "workspaceFolder": "/workspace", # 代表了你在容器內工作的根目錄
+    # 舉例來說，在開啟"這個專案"之後的編輯和coding時，實際上都是在這個目錄下進行的，沒有這些像單純寫JAVA時，就單純是在VSCode上進行
+
+    "extensions": [ # 這是要在容器內安裝的VSCode擴展，這些擴展可以增強開發環境的功能
+      "ms-python.python", # Python開發工具
+    ],
+
+    "settings": { # 設定Python環境的路徑，讓VSCode正確找到Python解析器
+      "python.pythonPath": "/usr/local/bin/python" 
+    }, # 前面是設定Python解釋器的位置 ; 後面是告訴VSCode在容器中Python解釋器的實際位置(容器內部的目錄)
+    # 設定名稱(告訴VSCode我們希望設定的是哪一項功能) : 設定的值(告訴 VSCode 在容器中 Python 解釋器的實際位置)
+
+    "postCreateCommand": "pip install -r requirements.txt" # 在容器創建後執行的命令
+  } 
+  # 檔案目的 : 定義開發容器環境，告訴IDE(自動化)如何創建和設置開發容器，並且會設置開發過程中所需要的工具、擴展、依賴、工作目錄等

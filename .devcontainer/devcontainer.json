@@ -4,7 +4,6 @@
     "workspaceFolder": "/workspace",
     "extensions": [
       "ms-python.python",
-      "ms-vscode.cpptools"
     ],
     "settings": {
       "python.pythonPath": "/usr/local/bin/python"
