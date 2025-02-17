@@ -14,10 +14,10 @@ cursor = connection.cursor()
 # cursor.execute("SHOW DATABASES;")
 # records = cursor.fetchall()
 # for r in records:
-#     print(r)
+#    print(r)
 
 # 選擇資料庫
-# cursor.execute('USE `db`;')
+cursor.execute('USE `db`;')
 
 # 創建表格
 # cursor.execute('CREATE TABLE `account`(`email` VARCHAR(50) PRIMARY KEY,`password` VARCHAR(30));')

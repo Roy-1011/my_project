@@ -12,10 +12,10 @@ services: # 定義服務(每個服務對應一個容器)
     networks: # 配置容器連接的網路
       - app_network
   db: # 和app一樣是服務名稱，用來處理關聯式資料庫的
-    image: mysql:5.7 #使用MySQL 5.7鏡像
+    image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: oyangwei7365o # 設置 root 密碼
-      MYSQL_DATABASE: fastapi_db  # 設置預設資料庫
+      MYSQL_DATABASE: db # 設置預設資料庫
     ports:
       - "3307:3306"
     networks:
