@@ -3,7 +3,7 @@ import pymysql
 # MySQL 連線資訊
 MYSQL_USER = "root"
 MYSQL_PASSWORD = "oyangwei7365o"
-MYSQL_HOST = "db"
+MYSQL_HOST = "localhost"
 MYSQL_PORT = 3306
 MYSQL_DB = "db"
 

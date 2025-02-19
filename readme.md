@@ -69,7 +69,9 @@ my_project/
 - **explaindevcontainer.txt** # 因為json文件不支持加註解，因此創了這個文字檔用來幫devcontainer.json加註解
 - **docker-compose.yml** # 管理容器的設定
 - **Dockerfile** # 建立 Docker 映像
-- **main.py** # FastAPI 的入口點
+- **main.py** # FastAPI 的入口點 and 處理使用者登入和回傳 token
 - **readme.md** # 專案說明文件
 - **requirements.txt** # Python 依賴套件
+- **example.sql** # 方便理解資料庫內容
+- **database.py** # 負責連線資料庫
 

@@ -1,8 +1,7 @@
 from fastapi import FastAPI 
-# from auth import router as auth_router
 from fastapi import HTTPException
 from pydantic import BaseModel # BaseModel是用來定義資料驗證模型的基礎類別
-import pymysql
+from pymysql.cursors import DictCursor
 import jwt
 import datetime
 from database import get_connection  # 取得MySQL連線
@@ -14,8 +13,6 @@ SECRET_KEY = "secretkey"
 ALGORITHM = "HS256"
 
 app = FastAPI() 
-
-# app.include_router(auth_router)
 
 @app.get("/") 
 
@@ -48,17 +45,17 @@ def create_jwt_token(email: str):
 def login(request: LoginRequest): # 定義名為login的函示，他接收一個參數request，冒號後面是參數型別
     connection = get_connection()  # 取得資料庫連線
     print("資料庫連線成功:", connection)
-    with connection.cursor() as cursor:
+    with connection.cursor(DictCursor) as cursor:
         cursor.execute("SELECT email, password FROM account WHERE email = %s", (request.email,))
         user = cursor.fetchone()  # 取得資料庫的使用者資料
 
     connection.close()
 
     # 如果沒有找到該email或密碼錯誤，回傳錯誤訊息
-    if not user or request.password != user[1]:
+    if user is None or request.password != user["password"]:
         raise HTTPException(status_code=400, detail="Email 或密碼錯誤")
 
     # 產生JWT Token
     token = create_jwt_token(user["email"])
-    return {"token" : token} # 當login函是被呼叫時，會返回一個字典
+    return {"token" : token} 
     
