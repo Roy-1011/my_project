@@ -5,7 +5,6 @@ from pymysql.cursors import DictCursor
 import jwt
 import datetime
 from database import get_connection  
-from fastapi import APIRouter
 import uvicorn 
 
 # JWT設定
@@ -20,8 +19,6 @@ def read_root():
     return {"message": "Hello, world!"} 
 if __name__ == "__main__": 
     uvicorn.run(app, host="0.0.0.0", port=8001)
-
-router = APIRouter()
 
 class LoginRequest(BaseModel): # 定義一個Pydantic模型LoginRequest，檢查從使用者端發送過來的資料結構
     email: str
